@@ -1,5 +1,6 @@
 package me.trihung.controller.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ import java.util.stream.IntStream;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -45,9 +47,10 @@ public class CategoryController extends HttpServlet{
 	@RequestMapping("")
 	public String all(Model model) {
 		List<Category> list = categoryService.findAll();
+		Page<Category> resultPage = new PageImpl<>(list);
 		model.addAttribute("list", list);
-//	    model.addAttribute("categoryPage", list);
-//	    model.addAttribute("pageNumbers", 3);
+	    model.addAttribute("categoryPage", resultPage);
+	    model.addAttribute("pageNumbers", 2);
 
 		return "admin/category/list";
 	}
