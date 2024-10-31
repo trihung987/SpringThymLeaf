@@ -50,7 +50,7 @@ public class CategoryController extends HttpServlet{
 		Page<Category> resultPage = new PageImpl<>(list);
 		model.addAttribute("list", list);
 	    model.addAttribute("categoryPage", resultPage);
-	    model.addAttribute("pageNumbers", 2);
+	    model.addAttribute("pageNumbers", 1);
 
 		return "admin/category/list";
 	}
